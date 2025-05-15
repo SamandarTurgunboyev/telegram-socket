@@ -1,24 +1,13 @@
-const express = require('express');
-const { createServer } = require('http');
-const { Server } = require('socket.io');
-
-const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, {
-    cors: {
-        origin: 'https://telegram-client.vercel.app',
-        methods: ['GET', 'POST'],
-        credentials: true,
-    },
-    transports: ['websocket', 'polling'],
-});
-
-const PORT = process.env.PORT || 3000;
-httpServer.listen(PORT, () => {
-    console.log(`Server ${PORT}-portda ishlamoqda`);
-});
+const express = require("express")
+const socketio = require('socket.io')
+const http = require("http")
 
 let users = []
+
+app = express()
+
+const server = http.createServer(app)
+const io = socketio(server)
 
 const addOnlineUser = (user, socket) => {
     const checkUser = users.find(u => u.user._id === user._id)
@@ -88,4 +77,11 @@ io.on('connection', socket => {
         users = users.filter(u => u.socket !== socket.id)
         io.emit("getOnlineUser", users)
     })
+})
+
+const PORT = process.env.PORT || 5000
+
+server.listen(prototype, () => {
+    console.log(`socket Running on port ${PORT}`);
+    
 })
