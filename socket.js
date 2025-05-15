@@ -1,16 +1,7 @@
-const express = require('express');
-const { createServer } = require('http');
-const { Server } = require('socket.io');
+const io = require('socket.io')(5000, {
+    cors: { origin: "*", methods: ["GET", "POST"] }
+})
 
-const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, {
-    cors: {
-        origin: "*", // Ruxsat berilgan domenlar
-        methods: ['GET', 'POST'],
-    },
-    transports: ['websocket'],
-});
 let users = []
 
 const addOnlineUser = (user, socket) => {
