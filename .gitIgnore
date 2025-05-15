@@ -1,0 +1,48 @@
+# Node.js modullari
+node_modules/
+
+# Muvozanatlash fayllari
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Log fayllari
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+*.log.*
+
+# Vaqtinchalik fayllar
+*.tmp
+*.temp
+*.swp
+
+# IDE va muharrir fayllari
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# O'chirilgan fayllar
+dist/
+build/
+coverage/
+
+# MongoDB ma'lumotlar bazasi fayllari (agar localda ishlatilsa)
+data/
+*.dump
+
+# MacOS fayllari
+.DS_Store
+
+# Windows fayllari
+Thumbs.db
+
+# Boshqa keraksiz fayllar
+*.pid
+*.seed
+*.pid.lock
