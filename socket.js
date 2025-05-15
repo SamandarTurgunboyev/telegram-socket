@@ -10,7 +10,7 @@ const io = new Server(httpServer, {
         methods: ['GET', 'POST'],
         credentials: true,
     },
-    transports: ['websocket'],
+    transports: ['websocket', 'polling'],
 });
 
 const PORT = process.env.PORT || 3000;
