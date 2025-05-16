@@ -1,13 +1,13 @@
-const express = require("express")
-const socketio = require('socket.io')
-const http = require("http")
+const dotenv = require('dotenv')
+dotenv()
+
+const PORT = process.env.PORT || 5000
+
+const io = require('socket.io')(PORT, {
+    cors: { origin: "*", methods: ["GET", "POST"] }
+})
 
 let users = []
-
-app = express()
-
-const server = http.createServer(app)
-const io = socketio(server)
 
 const addOnlineUser = (user, socket) => {
     const checkUser = users.find(u => u.user._id === user._id)
@@ -77,11 +77,4 @@ io.on('connection', socket => {
         users = users.filter(u => u.socket !== socket.id)
         io.emit("getOnlineUser", users)
     })
-})
-
-const PORT = process.env.PORT || 5000
-
-server.listen(prototype, () => {
-    console.log(`socket Running on port ${PORT}`);
-    
 })
